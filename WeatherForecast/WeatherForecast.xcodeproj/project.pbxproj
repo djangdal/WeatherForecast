@@ -14,6 +14,7 @@
 		FA10E08229DCC43F008983E7 /* WeatherForecastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10E08129DCC43F008983E7 /* WeatherForecastTests.swift */; };
 		FA10E08C29DCC43F008983E7 /* WeatherForecastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10E08B29DCC43F008983E7 /* WeatherForecastUITests.swift */; };
 		FA10E08E29DCC43F008983E7 /* WeatherForecastUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10E08D29DCC43F008983E7 /* WeatherForecastUITestsLaunchTests.swift */; };
+		FA10E09C29DCC4BA008983E7 /* CosyNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = FA10E09B29DCC4BA008983E7 /* CosyNetwork */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA10E09C29DCC4BA008983E7 /* CosyNetwork in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +145,9 @@
 			dependencies = (
 			);
 			name = WeatherForecast;
+			packageProductDependencies = (
+				FA10E09B29DCC4BA008983E7 /* CosyNetwork */,
+			);
 			productName = WeatherForecast;
 			productReference = FA10E06D29DCC43D008983E7 /* WeatherForecast.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +220,9 @@
 				Base,
 			);
 			mainGroup = FA10E06429DCC43D008983E7;
+			packageReferences = (
+				FA10E09A29DCC4BA008983E7 /* XCRemoteSwiftPackageReference "CosyNetwork" */,
+			);
 			productRefGroup = FA10E06E29DCC43D008983E7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -583,6 +591,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA10E09A29DCC4BA008983E7 /* XCRemoteSwiftPackageReference "CosyNetwork" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/djangdal/CosyNetwork";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA10E09B29DCC4BA008983E7 /* CosyNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA10E09A29DCC4BA008983E7 /* XCRemoteSwiftPackageReference "CosyNetwork" */;
+			productName = CosyNetwork;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA10E06529DCC43D008983E7 /* Project object */;
 }
