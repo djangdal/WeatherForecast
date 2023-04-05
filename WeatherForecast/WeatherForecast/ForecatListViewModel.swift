@@ -10,24 +10,15 @@ import Combine
 import CoreLocation
 
 final class ForecastListViewModel: ForecastListViewModelProtocol {
-    private let weatherFetcher: WeatherFetcher
+    private let weatherFetcher: WeatherFetcherProtocol
 
     @Published var forecasts: [ForecastInfo] = []
 
     private let cities: [City]
 
-    init(weatherFetcher: WeatherFetcher) {
+    init(weatherFetcher: WeatherFetcherProtocol, cities: [City]) {
         self.weatherFetcher = weatherFetcher
-        cities = [City(name: "Gothenburg",
-                       coordinate: CLLocationCoordinate2D(latitude: 57.708870, longitude: 11.974560)),
-                  City(name: "Mountain View",
-                       coordinate: CLLocationCoordinate2D(latitude: 37.386051, longitude: -122.083855)),
-                  City(name: "London",
-                       coordinate: CLLocationCoordinate2D(latitude: 51.503399, longitude: -0.119519)),
-                  City(name: "New York",
-                       coordinate: CLLocationCoordinate2D(latitude: 40.712772, longitude: -74.006058)),
-                  City(name: "Berlin",
-                       coordinate: CLLocationCoordinate2D(latitude: 52.520008, longitude: 13.404954))]
+        self.cities = cities
     }
 
 
@@ -46,7 +37,8 @@ final class ForecastListViewModel: ForecastListViewModelProtocol {
                                     symbolName: symbolName,
                                     details: [.init(name: "Time", value: timeSerie.time.formatted()),
                                               .init(name: "Wind", value: "\(timeSerie.data.instant.details.wind_speed)"),
-                                              .init(name: "Humidity", value: "\(timeSerie.data.instant.details.relative_humidity)")])
+                                              .init(name: "Humidity", value: "\(timeSerie.data.instant.details.relative_humidity)"),
+                                              .init(name: "Temperature", value: "\(timeSerie.data.instant.details.air_temperature)")])
             }
         } catch {
             print("Could not refresh forecasts: \(error)")

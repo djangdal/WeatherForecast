@@ -9,7 +9,11 @@ import Foundation
 import CosyNetwork
 import CoreLocation
 
-final class WeatherFetcher {
+protocol WeatherFetcherProtocol: AnyObject {
+    func fetchWeather(for coordinate: CLLocationCoordinate2D) async throws -> WeatherForecastResponse
+}
+
+final class WeatherFetcher: WeatherFetcherProtocol {
 
     private let dispatcher: APIDispatcher
 
