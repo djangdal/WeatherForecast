@@ -35,10 +35,18 @@ final class ForecastListViewModel: ForecastListViewModelProtocol {
         do {
             forecasts = try await cities.concurrentMap { [weak weatherFetcher] city in
                 let response = try await weatherFetcher?.fetchWeather(for: city.coordinate)
-                guard let symbolName = response?.properties.timeseries.first?.data.next_1_hours?.summary.symbol_code else {
-                    return ForecastInfo(cityName: city.name, symbolName: "cross")
+                guard let timeSerie = response?.properties.timeseries.first else {
+                        return ForecastInfo(cityName: city.name, symbolName: "cross", details: [])
                 }
-                return ForecastInfo(cityName: city.name, symbolName: symbolName)
+                guard let symbolName = timeSerie.data.next_1_hours?.summary.symbol_code else {
+                    return ForecastInfo(cityName: city.name, symbolName: "cross", details: [])
+                }
+
+                return ForecastInfo(cityName: city.name,
+                                    symbolName: symbolName,
+                                    details: [.init(name: "Time", value: timeSerie.time.formatted()),
+                                              .init(name: "Wind", value: "\(timeSerie.data.instant.details.wind_speed)"),
+                                              .init(name: "Humidity", value: "\(timeSerie.data.instant.details.relative_humidity)")])
             }
         } catch {
             print("Could not refresh forecasts: \(error)")

@@ -37,6 +37,7 @@ struct ForecastListView<ViewModel: ForecastListViewModelProtocol>: View {
 
 private struct ForecastListItem: View {
     let forecast: ForecastInfo
+    @State private var isExpanded: Bool = false
 
     var body: some View {
         VStack {
@@ -50,11 +51,26 @@ private struct ForecastListItem: View {
                     .resizable()
                     .frame(width: 30, height: 30)
             }
-            .padding(20)
+            .padding(horizontal: 20)
+
+            if isExpanded {
+                ForEach(forecast.details) { detail in
+                    HStack {
+                        Text(detail.name)
+                        Spacer()
+                        Text(detail.value)
+                    }
+                    .padding(leading: 30, trailing: 20)
+                }
+            }
         }
+        .padding(vertical: 20)
         .background(Color.black.opacity(0.1))
         .cornerRadius(20)
         .padding(horizontal: 20)
+        .onTapGesture {
+            isExpanded.toggle()
+        }
     }
 }
 
@@ -65,13 +81,17 @@ struct ForecastListView_Previews: PreviewProvider {
 
     private class MockedViewModel: ForecastListViewModelProtocol {
         var forecasts: [ForecastInfo] = [ForecastInfo(cityName: "Stockholm",
-                                                      symbolName: "clearsky_night"),
+                                                      symbolName: "clearsky_night",
+                                                      details: [.init(name: "Temperature", value: "12.0")]),
                                          ForecastInfo(cityName: "New York",
-                                                      symbolName: "clearsky_day"),
+                                                      symbolName: "clearsky_day",
+                                                      details: []),
                                          ForecastInfo(cityName: "Luleå",
-                                                      symbolName: "fog"),
+                                                      symbolName: "fog",
+                                                      details: []),
                                          ForecastInfo(cityName: "Brisbane",
-                                                      symbolName: "heavyrain")]
+                                                      symbolName: "heavyrain",
+                                                      details: []),]
         func fetchForecasts() async {}
     }
 }
@@ -80,11 +100,18 @@ struct ForecastInfo: Identifiable {
     let id = UUID()
     let cityName: String
     let symbolName: String
+    let details: [Detail]
 
     var image: Image {
         guard let image = UIImage(named: symbolName) else {
             return Image(systemName: "xmark")
         }
         return Image(uiImage: image)
+    }
+
+    struct Detail: Identifiable {
+        let id = UUID()
+        let name: String
+        let value: String
     }
 }
