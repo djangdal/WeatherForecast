@@ -16,14 +16,16 @@ struct ForecastListView<ViewModel: ForecastListViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
-        ScrollView {
-            Text("Forecasts")
-            VStack {
-                ForEach(viewModel.forecasts) { forecast in
-                    ForecastListItem(forecast: forecast)
+            ScrollView {
+                Text("Forecasts")
+                    .padding(top: 30)
+                    .font(.headline)
+                VStack {
+                    ForEach(viewModel.forecasts) { forecast in
+                        ForecastListItem(forecast: forecast)
+                    }
                 }
             }
-        }
         .refreshable(action: viewModel.fetchForecasts)
         .onAppear{
             Task {
@@ -40,7 +42,7 @@ private struct ForecastListItem: View {
         VStack {
             HStack {
                 Text(forecast.cityName)
-                    .font(.headline)
+                    .font(.subheadline)
 
                 Spacer()
 
@@ -50,6 +52,9 @@ private struct ForecastListItem: View {
             }
             .padding(20)
         }
+        .background(Color.black.opacity(0.1))
+        .cornerRadius(20)
+        .padding(horizontal: 20)
     }
 }
 

@@ -17,6 +17,7 @@
 		FA10E09C29DCC4BA008983E7 /* CosyNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = FA10E09B29DCC4BA008983E7 /* CosyNetwork */; };
 		FA10E09E29DCC4EC008983E7 /* WeatherFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10E09D29DCC4EC008983E7 /* WeatherFetcher.swift */; };
 		FA10E0A229DCCD4C008983E7 /* ForecatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10E0A129DCCD4C008983E7 /* ForecatListViewModel.swift */; };
+		FA10E0A429DD843D008983E7 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10E0A329DD843D008983E7 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		FA10E08D29DCC43F008983E7 /* WeatherForecastUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FA10E09D29DCC4EC008983E7 /* WeatherFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherFetcher.swift; sourceTree = "<group>"; };
 		FA10E0A129DCCD4C008983E7 /* ForecatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecatListViewModel.swift; sourceTree = "<group>"; };
+		FA10E0A329DD843D008983E7 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				FA10E07029DCC43D008983E7 /* WeatherForecastApp.swift */,
 				FA10E07229DCC43D008983E7 /* ForecastListView.swift */,
 				FA10E0A129DCCD4C008983E7 /* ForecatListViewModel.swift */,
+				FA10E0A329DD843D008983E7 /* View.swift */,
 				FA10E07429DCC43F008983E7 /* Assets.xcassets */,
 				FA10E07629DCC43F008983E7 /* Preview Content */,
 			);
@@ -273,6 +276,7 @@
 			files = (
 				FA10E09E29DCC4EC008983E7 /* WeatherFetcher.swift in Sources */,
 				FA10E0A229DCCD4C008983E7 /* ForecatListViewModel.swift in Sources */,
+				FA10E0A429DD843D008983E7 /* View.swift in Sources */,
 				FA10E07329DCC43D008983E7 /* ForecastListView.swift in Sources */,
 				FA10E07129DCC43D008983E7 /* WeatherForecastApp.swift in Sources */,
 			);
