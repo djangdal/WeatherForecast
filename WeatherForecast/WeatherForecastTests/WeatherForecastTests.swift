@@ -28,6 +28,7 @@ final class WeatherForecastTests: XCTestCase {
     // Could add following tests
     // Add test when timeseries is missing
     // Add test when symbol of timeseries is missing
+    // Add test to check that we are displaying tomorrows weather
 
 }
 

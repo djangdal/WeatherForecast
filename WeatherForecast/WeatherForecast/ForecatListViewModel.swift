@@ -26,8 +26,12 @@ final class ForecastListViewModel: ForecastListViewModelProtocol {
         do {
             forecasts = try await cities.concurrentMap { [weak weatherFetcher] city in
                 let response = try await weatherFetcher?.fetchWeather(for: city.coordinate)
-                guard let timeSerie = response?.properties.timeseries.first else {
-                        return ForecastInfo(cityName: city.name, symbolName: "cross", details: [])
+
+                // only show weather for tomorrow
+                guard let timeSerie = response?.properties.timeseries.first(where: { entry in
+                    Calendar(identifier: .gregorian).isDateInTomorrow(entry.time)
+                }) else {
+                    return ForecastInfo(cityName: city.name, symbolName: "cross", details: [])
                 }
                 guard let symbolName = timeSerie.data.next_1_hours?.summary.symbol_code else {
                     return ForecastInfo(cityName: city.name, symbolName: "cross", details: [])
